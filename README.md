@@ -395,3 +395,11 @@ This project is licensed under the **Apache 2.0 License** — see the [LICENSE](
 ---
 
 *Built with ❤️ using Spring Boot 3.4.1, MongoDB, Elasticsearch, Kafka, Redis, and Python NLP*
+---
+---
+
+<img width="1607" height="892" alt="image" src="https://github.com/user-attachments/assets/c83fa07d-1364-470d-b768-2744eeb9b197" />
+
+<img width="1546" height="760" alt="image" src="https://github.com/user-attachments/assets/67a79e6b-4b76-4263-900a-255ed99c8b6d" />
+
+
