@@ -102,7 +102,10 @@ public class AiNlpService {
 
     // ── Inner types ────────────────────────────────────────
 
-    @Data @Builder @NoArgsConstructor @AllArgsConstructor
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class NlpResult {
         private List<String>                technicalSkills;
         private List<String>                softSkills;
@@ -114,7 +117,9 @@ public class AiNlpService {
         private List<Resume.Education>      education;
     }
 
-    @Data @NoArgsConstructor @AllArgsConstructor
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
     static class NlpApiResponse {
         private List<String>                technical_skills;
         private List<String>                soft_skills;

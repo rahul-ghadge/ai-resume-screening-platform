@@ -1,7 +1,12 @@
 package com.resumeai.model;
 
-import lombok.*;
-import org.springframework.data.annotation.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -17,7 +22,7 @@ import java.util.Map;
  */
 @Document(collection = "match_results")
 @CompoundIndexes({
-    @CompoundIndex(name = "resume_job_idx", def = "{'resume_id': 1, 'job_id': 1}", unique = true)
+        @CompoundIndex(name = "resume_job_idx", def = "{'resume_id': 1, 'job_id': 1}", unique = true)
 })
 @Data
 @NoArgsConstructor
@@ -100,6 +105,7 @@ public class MatchResult {
     @Field("updated_at")
     private Instant updatedAt;
 
-    public enum MatchStatus        { NEW, REVIEWED, SHORTLISTED, REJECTED, HIRED }
-    public enum MatchRecommendation { STRONG_MATCH, GOOD_MATCH, PARTIAL_MATCH, WEAK_MATCH, NO_MATCH }
+    public enum MatchStatus {NEW, REVIEWED, SHORTLISTED, REJECTED, HIRED}
+
+    public enum MatchRecommendation {STRONG_MATCH, GOOD_MATCH, PARTIAL_MATCH, WEAK_MATCH, NO_MATCH}
 }

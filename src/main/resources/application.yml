@@ -17,7 +17,7 @@ spring:
       port: ${MONGO_PORT:27017}
       database: ${MONGO_DB:resume_screening_db}
       username: ${MONGO_USERNAME:}
-      password: ${MONGO_PASSWORD:}
+      password: ${MONGO_PASSWORD:""}
       auto-index-creation: true
 
     # ── Redis ─────────────────────────────────────────────────

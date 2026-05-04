@@ -25,7 +25,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  *   <li>JWT-secured recruiter dashboard APIs</li>
  * </ul>
  *
- * @author  Resume AI Team
+ * @author Resume AI Team
  * @version 1.0.0
  */
 @SpringBootApplication

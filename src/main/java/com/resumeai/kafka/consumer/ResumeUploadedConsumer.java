@@ -5,7 +5,6 @@ import com.resumeai.kafka.producer.ResumeEventProducer;
 import com.resumeai.model.Resume;
 import com.resumeai.repository.mongo.ResumeRepository;
 import com.resumeai.service.impl.AiNlpService;
-import com.resumeai.service.impl.MatchingService;
 import com.resumeai.util.FileStorageUtil;
 import com.resumeai.util.ResumeParserUtil;
 import lombok.RequiredArgsConstructor;
@@ -22,34 +21,34 @@ import java.util.Map;
 
 /**
  * Kafka consumer that drives the async resume processing pipeline.
- *
+ * <p>
  * Flow:
- *   1. ResumeUploadedConsumer → parses PDF, extracts text
- *   2. Calls AI/NLP service for structured skill extraction
- *   3. Saves enriched resume back to MongoDB
- *   4. Publishes ResumeProcessedEvent → triggers matching
+ * 1. ResumeUploadedConsumer → parses PDF, extracts text
+ * 2. Calls AI/NLP service for structured skill extraction
+ * 3. Saves enriched resume back to MongoDB
+ * 4. Publishes ResumeProcessedEvent → triggers matching
  */
 @Component
 @RequiredArgsConstructor
 @Slf4j
 public class ResumeUploadedConsumer {
 
-    private final ResumeRepository  resumeRepository;
-    private final FileStorageUtil   fileStorageUtil;
-    private final ResumeParserUtil  resumeParserUtil;
-    private final AiNlpService      aiNlpService;
+    private final ResumeRepository resumeRepository;
+    private final FileStorageUtil fileStorageUtil;
+    private final ResumeParserUtil resumeParserUtil;
+    private final AiNlpService aiNlpService;
     private final ResumeEventProducer eventProducer;
 
     @KafkaListener(
-            topics   = AppConstants.TOPIC_RESUME_UPLOADED,
-            groupId  = AppConstants.CONSUMER_GROUP_MAIN,
+            topics = AppConstants.TOPIC_RESUME_UPLOADED,
+            groupId = AppConstants.CONSUMER_GROUP_MAIN,
             containerFactory = "kafkaListenerContainerFactory"
     )
     public void consumeResumeUploaded(
-            @Payload  Map<String, Object> event,
-            @Header(KafkaHeaders.RECEIVED_TOPIC)     String topic,
+            @Payload Map<String, Object> event,
+            @Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
             @Header(KafkaHeaders.RECEIVED_PARTITION) int partition,
-            @Header(KafkaHeaders.OFFSET)             long offset,
+            @Header(KafkaHeaders.OFFSET) long offset,
             Acknowledgment ack) {
 
         String resumeId = (String) event.get("resumeId");
@@ -107,7 +106,7 @@ public class ResumeUploadedConsumer {
 
             // Step 4: Publish processed event to trigger matching
             eventProducer.publishResumeProcessed(
-                com.resumeai.kafka.producer.ResumeEventProducer.buildProcessedEvent(resume));
+                    com.resumeai.kafka.producer.ResumeEventProducer.buildProcessedEvent(resume));
 
             ack.acknowledge();
 
@@ -121,28 +120,5 @@ public class ResumeUploadedConsumer {
             });
             ack.acknowledge();
         }
-    }
-}
-
-// ── Notification Consumer ─────────────────────────────────────
-@Component
-@RequiredArgsConstructor
-@Slf4j
-class NotificationConsumer {
-
-    @KafkaListener(
-            topics   = AppConstants.TOPIC_NOTIFICATION,
-            groupId  = AppConstants.CONSUMER_GROUP_MAIN + "-notifications"
-    )
-    public void consumeNotification(
-            @Payload Map<String, Object> event,
-            Acknowledgment ack) {
-
-        String recipient = (String) event.get("recipientEmail");
-        String subject   = (String) event.get("subject");
-
-        // In production: integrate with SendGrid / AWS SES / SMTP
-        log.info("📧 [NOTIFICATION] To: {} | Subject: {}", recipient, subject);
-        ack.acknowledge();
     }
 }

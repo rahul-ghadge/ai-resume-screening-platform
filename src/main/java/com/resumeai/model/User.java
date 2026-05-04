@@ -1,7 +1,13 @@
 package com.resumeai.model;
 
-import lombok.*;
-import org.springframework.data.annotation.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -69,5 +75,5 @@ public class User {
     @Version
     private Long version;
 
-    public enum Role { ROLE_ADMIN, ROLE_RECRUITER, ROLE_CANDIDATE }
+    public enum Role {ROLE_ADMIN, ROLE_RECRUITER, ROLE_CANDIDATE}
 }

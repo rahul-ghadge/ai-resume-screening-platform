@@ -1,16 +1,22 @@
 package com.resumeai.repository.elasticsearch;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.*;
-import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.time.Instant;
 import java.util.List;
 
 @Document(indexName = "jobs")
-@Data @NoArgsConstructor @AllArgsConstructor @Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class JobDocument {
 
     @Id
@@ -42,13 +48,4 @@ public class JobDocument {
 
     @Field(type = FieldType.Date)
     private Instant createdAt;
-}
-
-@Repository
-interface JobSearchRepository extends ElasticsearchRepository<JobDocument, String> {
-
-    List<JobDocument> findByRequiredSkillsIn(List<String> skills);
-
-    List<JobDocument> findByStatusAndMinExperienceYearsLessThanEqual(
-            String status, Integer experienceYears);
 }
