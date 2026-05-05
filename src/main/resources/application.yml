@@ -16,7 +16,7 @@ spring:
       host: ${MONGO_HOST:localhost}
       port: ${MONGO_PORT:27017}
       database: ${MONGO_DB:resume_screening_db}
-      auto-index-creation: true
+#      auto-index-creation: true
 
     # ── Redis ─────────────────────────────────────────────────
     redis:

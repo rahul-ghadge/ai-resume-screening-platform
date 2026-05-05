@@ -42,7 +42,7 @@ public class JobPostingServiceImpl implements JobPostingService {
 
     @Override
     public Page<JobPosting> getJobsByRecruiter(String recruiterId, Pageable pageable) {
-        return jobPostingRepository.findByRecruiter(recruiterId, pageable);
+        return jobPostingRepository.findByRecruiterId(recruiterId, pageable);
     }
 
     @Override

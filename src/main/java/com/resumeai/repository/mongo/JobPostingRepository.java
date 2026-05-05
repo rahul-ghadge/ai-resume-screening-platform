@@ -17,8 +17,6 @@ public interface JobPostingRepository extends MongoRepository<JobPosting, String
 
     Page<JobPosting> findByRecruiterId(String recruiterId, Pageable pageable);
 
-    Page<JobPosting> findByRecruiter(String recruiterId, Pageable pageable);
-
     Page<JobPosting> findByRecruiterIdAndStatus(
             String recruiterId, JobPosting.JobStatus status, Pageable pageable);
 
