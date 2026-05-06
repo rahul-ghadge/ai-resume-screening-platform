@@ -1,5 +1,8 @@
 package com.resumeai.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.InstantSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -100,6 +103,7 @@ public class JobPosting {
 
     @Indexed
     @Field("expires_at")
+    @JsonSerialize(using = InstantSerializer.class)
     private Instant expiresAt;
 
     @Field("application_count")
@@ -116,10 +120,12 @@ public class JobPosting {
     // ── Audit ─────────────────────────────────────────────
     @CreatedDate
     @Field("created_at")
+    @JsonSerialize(using = InstantSerializer.class)
     private Instant createdAt;
 
     @LastModifiedDate
     @Field("updated_at")
+    @JsonSerialize(using = InstantSerializer.class)
     private Instant updatedAt;
 
     @CreatedBy
