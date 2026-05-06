@@ -49,6 +49,7 @@ services:
       REDIS_HOST: redis
       REDIS_PORT: 6379
       ES_URI: http://elasticsearch:9200
+#      SPRING_ELASTICSEARCH_URIS: http://elasticsearch:9200
       KAFKA_BOOTSTRAP_SERVERS: kafka:29092
       AI_NLP_URL: http://ai-nlp:5000
       AI_NLP_ENABLED: "true"
@@ -68,7 +69,13 @@ services:
         condition: service_healthy
     networks:
       - resume-net
-    restart: unless-stopped
+    restart: on-failure:5
+    command: >
+      sh -c "
+        echo 'Waiting 30 extra seconds for Elasticsearch to fully initialise...' &&
+        sleep 30 &&
+        java -jar /app/app.jar
+      "
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
       interval: 30s
@@ -131,8 +138,6 @@ services:
     environment:
       ME_CONFIG_MONGODB_SERVER: mongo
       ME_CONFIG_MONGODB_PORT: 27017
-      ME_CONFIG_BASICAUTH_USERNAME: admin
-      ME_CONFIG_BASICAUTH_PASSWORD: admin123
     depends_on:
       - mongo
     networks:
@@ -151,19 +156,19 @@ services:
     environment:
       discovery.type: single-node
       ES_JAVA_OPTS: "-Xms512m -Xmx512m"
-      xpack.security.enabled: "false"
-      xpack.security.http.ssl.enabled: "false"
+      xpack.security.enabled: false
+      xpack.security.http.ssl.enabled: false
     volumes:
       - es-data:/usr/share/elasticsearch/data
     networks:
       - resume-net
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "curl -s http://localhost:9200/_cluster/health | grep -q '\"status\":\"green\"\\|\"status\":\"yellow\"'"]
-      interval: 20s
+      test: ["CMD-SHELL", "curl -sf 'http://localhost:9200/_cluster/health?wait_for_status=yellow&timeout=5s' || exit 1"]
+      interval: 10s
       timeout: 10s
-      retries: 10
-      start_period: 60s
+      retries: 12
+      start_period: 90s
 
   # ─────────────────────────────────────────────────────────────
   #  KIBANA (Elasticsearch UI)

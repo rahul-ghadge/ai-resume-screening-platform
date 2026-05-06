@@ -7,6 +7,8 @@ server:
     include-binding-errors: always
 
 spring:
+  main:
+    lazy-initialization: true
   application:
     name: ai-resume-screening-platform
 
