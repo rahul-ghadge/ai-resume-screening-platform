@@ -1,6 +1,6 @@
 # 🤖 AI-Powered Resume Screening & Job Matching Platform
 
-[![Build Status](https://github.com/rahulghadge/ai-resume-screening-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/rahul-ghadge/ai-resume-screening-platform/actions)
+[![CI — Build, Test & Docker Push](https://github.com/rahul-ghadge/ai-resume-screening-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/rahul-ghadge/ai-resume-screening-platform/actions/workflows/ci.yml)
 [![Java](https://img.shields.io/badge/Java-21-orange)](https://openjdk.org/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.4.1-brightgreen)](https://spring.io/projects/spring-boot)
 [![MongoDB](https://img.shields.io/badge/MongoDB-7.0-green)](https://www.mongodb.com/)
