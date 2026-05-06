@@ -79,7 +79,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiResponse<Void>> handleGeneral(Exception ex, HttpServletRequest req) {
         log.error("Unhandled exception at [{}]: {}", req.getRequestURI(), ex.getMessage(), ex);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(buildError("An internal server error occurred. Please try again later.", 500, req.getRequestURI()));
+                .body(buildError("An internal server error occurred. Please try again later: " + ex.getMessage(), 500, req.getRequestURI()));
     }
 
     private ApiResponse<Void> buildError(String message, int statusCode, String path) {

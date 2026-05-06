@@ -157,7 +157,7 @@ management:
 # ── Logging ───────────────────────────────────────────────
 logging:
   level:
-    com.resumeai: DEBUG
+    com.resumeai: INFO
     org.springframework.security: INFO
     org.springframework.data.elasticsearch: INFO
     org.apache.kafka: WARN
