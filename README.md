@@ -1,6 +1,6 @@
 # 🤖 AI-Powered Resume Screening & Job Matching Platform
 
-[![Build Status](https://github.com/your-username/ai-resume-screening-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/your-username/ai-resume-screening-platform/actions)
+[![Build Status](https://github.com/rahulghadge/ai-resume-screening-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/rahul-ghadge/ai-resume-screening-platform/actions)
 [![Java](https://img.shields.io/badge/Java-21-orange)](https://openjdk.org/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.4.1-brightgreen)](https://spring.io/projects/spring-boot)
 [![MongoDB](https://img.shields.io/badge/MongoDB-7.0-green)](https://www.mongodb.com/)
@@ -399,7 +399,17 @@ This project is licensed under the **Apache 2.0 License** — see the [LICENSE](
 ---
 
 <img width="1607" height="892" alt="image" src="https://github.com/user-attachments/assets/c83fa07d-1364-470d-b768-2744eeb9b197" />
-
 <img width="1546" height="760" alt="image" src="https://github.com/user-attachments/assets/67a79e6b-4b76-4263-900a-255ed99c8b6d" />
+
+
+<img width="1303" height="542" alt="image" src="https://github.com/user-attachments/assets/bc3efd67-cdca-449e-8f32-646974eb8b3a" />
+<img width="1308" height="817" alt="image" src="https://github.com/user-attachments/assets/c7f1fac4-b586-4158-be2d-c6d37df361fa" />
+
+
+
+<img width="1311" height="911" alt="image" src="https://github.com/user-attachments/assets/78a041f9-75bd-48ae-bfa1-5c1e42f402fc" />
+<img width="1306" height="590" alt="image" src="https://github.com/user-attachments/assets/048f6871-638e-4374-8ed5-84fd3a20435d" />
+<img width="1304" height="940" alt="image" src="https://github.com/user-attachments/assets/5ab7f687-e2d5-45b9-90f2-1ce6cc1863b2" />
+
 
 
