@@ -78,8 +78,12 @@ spring:
     default-property-inclusion: NON_NULL
     serialization:
       write-dates-as-timestamps: false
+      write-date-timestamps-as-nanoseconds: false
     deserialization:
       fail-on-unknown-properties: false
+      adjust-dates-to-context-time-zone: false
+    # This registers JavaTimeModule automatically
+    time-zone: UTC
 
 # ── Application-level config ──────────────────────────────
 app:

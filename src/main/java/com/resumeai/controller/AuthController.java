@@ -9,6 +9,7 @@ import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.*;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
@@ -56,7 +57,7 @@ public class AuthController {
     @GetMapping("/me")
     @Operation(summary = "Get current authenticated user profile")
     public ResponseEntity<ApiResponse<?>> getCurrentUser(
-//            org.springframework.security.core.annotation.AuthenticationPrincipal authenticationPrincipal,
+            @AuthenticationPrincipal
             org.springframework.security.core.userdetails.UserDetails userDetails) {
 
         var user = authService.getCurrentUser(userDetails.getUsername());
